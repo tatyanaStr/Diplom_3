@@ -8,15 +8,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import site.nomoreparties.stellarburgers.BrowserSetUp;
-import org.api.LoginAndDeleteUserApi;
-import org.api.json.UserRequest;
-import site.nomoreparties.stellarburgers.TestProperties;
+import site.nomoreparties.stellarburgers.LoginAndDeleteUserApi;
+import site.nomoreparties.stellarburgers.json.UserRequest;
 import site.nomoreparties.stellarburgers.pages.LoginStellarBurgerPage;
 import site.nomoreparties.stellarburgers.pages.MainStellarBurgerPage;
 import site.nomoreparties.stellarburgers.pages.ProfileStellarBurgerPage;
 import site.nomoreparties.stellarburgers.pages.RegistrationStellarBurgerPage;
-
-import java.util.Objects;
 
 public class RegistrationTest {
     BrowserSetUp browser = new BrowserSetUp();

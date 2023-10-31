@@ -16,6 +16,7 @@ Project is created with:
 * gson 2.8.9
 * Selenium 4.8.1
 * Faker 1.0.2
+* Lombok 1.18.28
 
 ## Setup
 To run this project:

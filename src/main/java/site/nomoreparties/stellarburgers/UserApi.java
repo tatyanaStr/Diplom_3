@@ -1,9 +1,9 @@
-package org.api;
+package site.nomoreparties.stellarburgers;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.api.json.UserRequest;
+import site.nomoreparties.stellarburgers.json.UserRequest;
 
 import static io.restassured.RestAssured.given;
 

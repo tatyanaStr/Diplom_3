@@ -1,9 +1,9 @@
-package org.api;
+package site.nomoreparties.stellarburgers;
 
 import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.api.json.UserRequest;
+import site.nomoreparties.stellarburgers.json.UserRequest;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;

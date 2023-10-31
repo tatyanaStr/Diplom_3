@@ -5,19 +5,12 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import site.nomoreparties.stellarburgers.BrowserSetUp;
-import org.api.CreateUserApi;
-import org.api.LoginAndDeleteUserApi;
-import org.api.json.UserRequest;
-import site.nomoreparties.stellarburgers.TestProperties;
+import site.nomoreparties.stellarburgers.CreateUserApi;
+import site.nomoreparties.stellarburgers.LoginAndDeleteUserApi;
+import site.nomoreparties.stellarburgers.json.UserRequest;
 import site.nomoreparties.stellarburgers.pages.*;
-
-import java.io.FileInputStream;
-import java.util.Objects;
-import java.util.Properties;
 
 public class LoginTest {
     BrowserSetUp browser = new BrowserSetUp();

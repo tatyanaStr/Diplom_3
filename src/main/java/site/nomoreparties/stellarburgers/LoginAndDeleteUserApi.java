@@ -1,8 +1,8 @@
-package org.api;
+package site.nomoreparties.stellarburgers;
 
 import io.restassured.RestAssured;
-import org.api.json.UserRequest;
-import org.api.json.UserResponse;
+import site.nomoreparties.stellarburgers.json.UserRequest;
+import site.nomoreparties.stellarburgers.json.UserResponse;
 
 public class LoginAndDeleteUserApi {
     UserApi userApi = new UserApi();

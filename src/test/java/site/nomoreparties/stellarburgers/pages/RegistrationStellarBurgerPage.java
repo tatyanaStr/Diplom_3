@@ -11,6 +11,7 @@ import java.time.Duration;
 
 public class RegistrationStellarBurgerPage {
     private WebDriver driver;
+    public static final String registerUrl ="https://stellarburgers.nomoreparties.site/register";
     private By regHeading = By.xpath("//h2[contains(text(), 'Регистрация')]");
     private By name = By.xpath(".//label[text()='Имя']/following-sibling::input");
     private By email = By.xpath(".//label[text()='Email']/following-sibling::input");

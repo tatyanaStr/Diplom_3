@@ -1,13 +1,13 @@
-package site.nomoreparties.stellarburgers.api;
+package org.api;
 
 import io.restassured.RestAssured;
-import site.nomoreparties.stellarburgers.api.json.UserResponse;
-import site.nomoreparties.stellarburgers.api.json.UserRequest;
+import org.api.json.UserRequest;
+import org.api.json.UserResponse;
 
 public class LoginAndDeleteUserApi {
     UserApi userApi = new UserApi();
     public void deleteUser(UserRequest user) {
-        RestAssured.baseURI = "https://stellarburgers.nomoreparties.site/";
+        RestAssured.requestSpecification = UserApi.requestSpec;
         var response = userApi.loginUser(user);
         var token = response.body().as(UserResponse.class).getAccessToken();
         userApi.deleteUser(token);

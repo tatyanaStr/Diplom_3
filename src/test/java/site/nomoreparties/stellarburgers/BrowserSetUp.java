@@ -5,8 +5,23 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class BrowserSetUp {
+
+
+    public WebDriver setUp(){
+        WebDriver driver = null;
+        var properties = new TestProperties();
+        var browserName = properties.defineBrowser();
+
+        if (Objects.equals(browserName, "Yandex")){
+            driver = yaDriver();
+        }else if(Objects.equals(browserName, "Chrome")){
+            driver = chromeDriver();
+        }
+        return driver;
+    }
 
     public WebDriver chromeDriver(){
         String userDirectory = Paths.get("").toAbsolutePath().toString();

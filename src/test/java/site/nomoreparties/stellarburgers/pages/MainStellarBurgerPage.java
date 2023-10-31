@@ -4,15 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.RemoteWebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Objects;
 
 public class MainStellarBurgerPage {
     private WebDriver driver;
+    public static final String mainUrl = "https://stellarburgers.nomoreparties.site";
     private By heading = By.xpath("//h1[text()='Соберите бургер']");
     private By goToProfile = By.xpath("//a[@href='/account']");
     private By loginButton = By.xpath("//button[contains(text(), 'Войти в аккаунт')]");
@@ -22,7 +22,6 @@ public class MainStellarBurgerPage {
     private By fillingElement = By.xpath("//h2[text()='Начинки']/following-sibling::ul/a[1]");
     private By sauce = By.xpath("//span[text()='Соусы']/parent::div");
     private By filling = By.xpath("//span[text()='Начинки']/parent::div");
-    private By closePopup = By.xpath(".//h2[text()='Детали ингредиента']//parent::*/following-sibling::button");
 
     public MainStellarBurgerPage(WebDriver driver) {
         this.driver = driver;
@@ -31,6 +30,24 @@ public class MainStellarBurgerPage {
     public void waitForLoadPage() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(heading));
+    }
+
+    public void waitForFillingVisible() {
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(
+                (ExpectedCondition<Object>) webDriver -> this.isFillingVisible()
+        );
+    }
+
+    public void waitForSauseVisible() {
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(
+                (ExpectedCondition<Object>) webDriver -> this.isSauceVisible()
+        );
+    }
+
+    public void waitForBunVisible() {
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(
+                (ExpectedCondition<Object>) webDriver -> this.isBunVisible()
+        );
     }
 
     public void clickBunTab() {

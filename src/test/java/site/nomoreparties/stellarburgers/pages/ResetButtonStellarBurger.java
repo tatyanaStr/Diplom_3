@@ -9,6 +9,7 @@ import java.time.Duration;
 
 public class ResetButtonStellarBurger {
     private WebDriver driver;
+    public static final String resetPasswordUrl = "https://stellarburgers.nomoreparties.site/forgot-password";
     private By regHeading = By.xpath("//h2[contains(text(), 'Восстановление пароля')]");
     private By loginLink = By.xpath("//a[@href=\"/login\" and contains(text(), 'Войти')]");
 

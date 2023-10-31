@@ -9,80 +9,53 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import site.nomoreparties.stellarburgers.BrowserSetUp;
+import site.nomoreparties.stellarburgers.TestProperties;
 import site.nomoreparties.stellarburgers.pages.MainStellarBurgerPage;
 
-@RunWith(Parameterized.class)
+import java.util.Objects;
+
 public class ConstructorTest {
     BrowserSetUp browser = new BrowserSetUp();
     WebDriver driver;
-    private final String BROWSERS;
-
-    public ConstructorTest(String browser) {
-        this.BROWSERS = browser;
-    }
-
-    @Parameterized.Parameters
-    public static Object[][] getBrowser() {
-        return new Object[][]{
-                {"Yandex"},
-                {"Chrome"}
-        };
-    }
 
     @Before
     public void setUpBrowser() {
-        if (BROWSERS == "Yandex"){
-            driver = browser.yaDriver();
-        }else if(BROWSERS == "Chrome"){
-            driver= browser.chromeDriver();
-        }
+        driver = browser.setUp();
     }
 
     @Test
     @DisplayName("Проверка работы перехода к разделу: Начинки")
     public void constructorFillingTest(){
         MainStellarBurgerPage main = new MainStellarBurgerPage(driver);
-        driver.get("https://stellarburgers.nomoreparties.site");
+        driver.get(main.mainUrl);
         main.waitForLoadPage();
         main.clickFillingTab();
-        try{
-            Thread.sleep(1000);
-        }
-        catch (Exception e){
-        }
-        Assert.assertEquals("Ошибка к переходу к Начинкам", main.isFillingVisible(), true);
+        main.waitForFillingVisible();
+        Assert.assertTrue("Ошибка к переходу к Начинкам", main.isFillingVisible());
     }
 
     @Test
     @DisplayName("Проверка работы перехода к разделу: Соусы")
     public void constructorSauceTest(){
         MainStellarBurgerPage main = new MainStellarBurgerPage(driver);
-        driver.get("https://stellarburgers.nomoreparties.site");
+        driver.get(main.mainUrl);
         main.waitForLoadPage();
         main.clickFillingTab();
         main.clickSauceTab();
-        try{
-            Thread.sleep(1000);
-        }
-        catch (Exception e){
-        }
-        Assert.assertEquals("Ошибка к переходу к Соусам", main.isSauceVisible(), true);
+        main.waitForSauseVisible();
+        Assert.assertTrue("Ошибка к переходу к Соусам", main.isSauceVisible());
     }
 
     @Test
     @DisplayName("Проверка работы перехода к разделу: Булки")
     public void constructorBunTest(){
         MainStellarBurgerPage main = new MainStellarBurgerPage(driver);
-        driver.get("https://stellarburgers.nomoreparties.site");
+        driver.get(main.mainUrl);
         main.waitForLoadPage();
         main.clickFillingTab();
         main.clickBunTab();
-        try{
-            Thread.sleep(1000);
-        }
-        catch (Exception e){
-        }
-        Assert.assertEquals("Ошибка к переходу к Булкам", main.isBunVisible(), true);
+        main.waitForBunVisible();
+        Assert.assertTrue("Ошибка к переходу к Булкам", main.isBunVisible());
     }
 
     @After

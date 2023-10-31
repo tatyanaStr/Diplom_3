@@ -9,39 +9,27 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import site.nomoreparties.stellarburgers.BrowserSetUp;
-import site.nomoreparties.stellarburgers.api.CreateUserApi;
-import site.nomoreparties.stellarburgers.api.LoginAndDeleteUserApi;
-import site.nomoreparties.stellarburgers.api.json.UserRequest;
+import org.api.CreateUserApi;
+import org.api.LoginAndDeleteUserApi;
+import org.api.json.UserRequest;
+import site.nomoreparties.stellarburgers.TestProperties;
 import site.nomoreparties.stellarburgers.pages.*;
 
-@RunWith(Parameterized.class)
+import java.io.FileInputStream;
+import java.util.Objects;
+import java.util.Properties;
+
 public class LoginTest {
     BrowserSetUp browser = new BrowserSetUp();
     CreateUserApi userApi = new CreateUserApi();
     LoginAndDeleteUserApi delApi = new LoginAndDeleteUserApi();
     UserRequest userData = userApi.createUser();
     WebDriver driver;
-    private final String BROWSERS;
-
-    public LoginTest(String browsers) {
-        this.BROWSERS = browsers;
-    }
-
-    @Parameterized.Parameters
-    public static Object[][] getBrowser() {
-        return new Object[][]{
-                {"Yandex"},
-                {"Chrome"}
-        };
-    }
 
     @Before
     public void setUpBrowser() {
-        if (BROWSERS == "Yandex"){
-            driver = browser.yaDriver();
-        }else if(BROWSERS == "Chrome"){
-            driver= browser.chromeDriver();
-        }
+
+        driver = browser.setUp();
     }
 
     @Test
@@ -50,7 +38,7 @@ public class LoginTest {
         MainStellarBurgerPage main = new MainStellarBurgerPage(driver);
         LoginStellarBurgerPage login = new LoginStellarBurgerPage(driver);
         ProfileStellarBurgerPage profile = new ProfileStellarBurgerPage(driver);
-        driver.get("https://stellarburgers.nomoreparties.site");
+        driver.get(MainStellarBurgerPage.mainUrl);
         main.waitForLoadPage();
         main.clickLoginButton();
         login.waitForLoadPage();
@@ -67,7 +55,7 @@ public class LoginTest {
         MainStellarBurgerPage main = new MainStellarBurgerPage(driver);
         LoginStellarBurgerPage login = new LoginStellarBurgerPage(driver);
         ProfileStellarBurgerPage profile = new ProfileStellarBurgerPage(driver);
-        driver.get("https://stellarburgers.nomoreparties.site");
+        driver.get(MainStellarBurgerPage.mainUrl);
         main.waitForLoadPage();
         main.openProfilePage();
         login.waitForLoadPage();
@@ -85,7 +73,7 @@ public class LoginTest {
         LoginStellarBurgerPage login = new LoginStellarBurgerPage(driver);
         RegistrationStellarBurgerPage reg = new RegistrationStellarBurgerPage(driver);
         ProfileStellarBurgerPage profile = new ProfileStellarBurgerPage(driver);
-        driver.get("https://stellarburgers.nomoreparties.site/register");
+        driver.get(RegistrationStellarBurgerPage.registerUrl);
         reg.waitForLoadPage();
         reg.scrollToElement();
         reg.clickSignInLink();
@@ -104,7 +92,7 @@ public class LoginTest {
         LoginStellarBurgerPage login = new LoginStellarBurgerPage(driver);
         ResetButtonStellarBurger reset = new ResetButtonStellarBurger(driver);
         ProfileStellarBurgerPage profile = new ProfileStellarBurgerPage(driver);
-        driver.get("https://stellarburgers.nomoreparties.site/forgot-password");
+        driver.get(ResetButtonStellarBurger.resetPasswordUrl);
         reset.waitForLoadPage();
         reset.clickLoginLink();
         login.waitForLoadPage();

@@ -1,4 +1,4 @@
-package site.nomoreparties.stellarburgers.api.json;
+package org.api.json;
 
 public class UserInfoResponse {
 

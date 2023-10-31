@@ -1,50 +1,33 @@
 package site.nomoreparties.stellarburgers.test;
 
+import com.github.javafaker.Faker;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import site.nomoreparties.stellarburgers.BrowserSetUp;
-import site.nomoreparties.stellarburgers.RandomValue;
-import site.nomoreparties.stellarburgers.api.LoginAndDeleteUserApi;
-import site.nomoreparties.stellarburgers.api.json.UserRequest;
+import org.api.LoginAndDeleteUserApi;
+import org.api.json.UserRequest;
+import site.nomoreparties.stellarburgers.TestProperties;
 import site.nomoreparties.stellarburgers.pages.LoginStellarBurgerPage;
 import site.nomoreparties.stellarburgers.pages.MainStellarBurgerPage;
 import site.nomoreparties.stellarburgers.pages.ProfileStellarBurgerPage;
 import site.nomoreparties.stellarburgers.pages.RegistrationStellarBurgerPage;
 
-@RunWith(Parameterized.class)
+import java.util.Objects;
+
 public class RegistrationTest {
     BrowserSetUp browser = new BrowserSetUp();
-    RandomValue value = new RandomValue();
     LoginAndDeleteUserApi delApi = new LoginAndDeleteUserApi();
-    UserRequest user = new UserRequest(value.email(), value.password(6), value.name(6));
+    Faker value = new Faker();
+    UserRequest user = new UserRequest(value.internet().emailAddress(), value.internet().password(6, 10), value.name().firstName());
     WebDriver driver;
-    private final String BROWSERS;
-
-    public RegistrationTest(String browsers) {
-        this.BROWSERS = browsers;
-    }
-
-    @Parameterized.Parameters
-    public static Object[][] getBrowser() {
-        return new Object[][]{
-                {"Yandex"},
-                {"Chrome"}
-        };
-    }
-
     @Before
     public void setUpBrowser() {
-        if (BROWSERS == "Yandex") {
-            driver = browser.yaDriver();
-        } else if (BROWSERS == "Chrome") {
-            driver = browser.chromeDriver();
-        }
+
+        driver = browser.setUp();
     }
 
     @Test
@@ -54,7 +37,7 @@ public class RegistrationTest {
         ProfileStellarBurgerPage profile = new ProfileStellarBurgerPage(driver);
         MainStellarBurgerPage main = new MainStellarBurgerPage(driver);
         LoginStellarBurgerPage login = new LoginStellarBurgerPage(driver);
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.get(MainStellarBurgerPage.mainUrl);
         main.waitForLoadPage();
         main.openProfilePage();
         login.waitForLoadPage();
@@ -75,7 +58,7 @@ public class RegistrationTest {
         RegistrationStellarBurgerPage reg = new RegistrationStellarBurgerPage(driver);
         MainStellarBurgerPage main = new MainStellarBurgerPage(driver);
         LoginStellarBurgerPage login = new LoginStellarBurgerPage(driver);
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.get(MainStellarBurgerPage.mainUrl);
         main.waitForLoadPage();
         main.openProfilePage();
         login.waitForLoadPage();

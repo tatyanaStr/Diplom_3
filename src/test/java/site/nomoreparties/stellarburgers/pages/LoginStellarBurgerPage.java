@@ -11,6 +11,7 @@ import java.time.Duration;
 
 public class LoginStellarBurgerPage {
     private WebDriver driver;
+    public static final String loginUrl = "https://stellarburgers.nomoreparties.site/login";
     private By loginHeading = By.xpath("//h2[contains(text(), 'Вход')]");
     private By email = By.xpath(".//label[text()='Email']/following-sibling::input");
     private By password = By.xpath(".//label[text()='Пароль']/following-sibling::input");

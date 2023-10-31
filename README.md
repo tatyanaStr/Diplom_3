@@ -15,6 +15,7 @@ Project is created with:
 * RestAssured 4.4.0
 * gson 2.8.9
 * Selenium 4.8.1
+* Faker 1.0.2
 
 ## Setup
 To run this project:
